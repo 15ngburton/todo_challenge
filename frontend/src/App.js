@@ -4,7 +4,7 @@ import TodoItem from "./TodoItem"
 const App = () => {
     return (
         <div>
-            <TodoItem />
+            <TodoItem description="Do the dishes" complete="True"/>
         </div>
     );
 };
