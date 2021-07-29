@@ -1,37 +1,37 @@
+# Controller for TodoItems Objects
+# frozen_string_literal: true
+
 class TodoItemsController < ApplicationController
-    before_action :set_todoitem
 
-    # GET /todo_items
-    def index
-        @todoitems = TodoItem.all
-        json_response(@todoitems)
-    end
-    
-    # POST /todo_items
-    def create
-        @todoitem = TodoItems.create(todo_params)
-        json_response(@todo, :created)
-    end
+  # GET /todo_items
+  def index
+    @todoitems = TodoItem.all
+    json_response(@todoitems)
+  end
 
-    # GET /todo_items/:id
-    def show
-        json_response(@todoitem)
-    end
+  # POST /todo_items
+  def create
+    @todoitem = TodoItems.create(todo_params)
+    json_response(@todo, :created)
+  end
 
-    # PUT /todo_items/:id
-    def update
-        @todoitem.update(todo_params)
-        head :no_content
-    end
+  # GET /todo_items/:id
+  def show
+    @todoitem = TodoItem.find(params[:id])
+    json_response(@todoitem)
+  end
 
-    private
+  # PUT /todo_items/:id
+  def update
+    @todoitem = TodoItem.find(params[:id])
+    @todoitem.update(todo_params)
+    head :no_content
+  end
 
-    def todo_params
-        #Whitelist params
-        params.permit(:id, :description, :completed)
-    end
+  private
 
-    def set_todoitem
-        @todoitem = TodoItem.find(params[:id])
-    end
+  def todo_params
+    # Whitelist params
+    params.permit(:id, :description, :completed)
+  end
 end
