@@ -8,12 +8,12 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Example />
+      <TodoList />
     </QueryClientProvider>
   );
 }
 
-function Example() {
+function TodoList() {
   const { isLoading, error, data } = useQuery("repoData", () =>
     fetch("http://127.0.0.1:3000/todo_items").then((res) => res.json())
   );
@@ -25,7 +25,7 @@ function Example() {
   return (
     <div>
       {data.map((todo_item) => (
-        <TodoItem description={todo_item.description} />
+        <TodoItem description={todo_item.description} complete={todo_item.complete}/>
       ))}
     </div>
   );

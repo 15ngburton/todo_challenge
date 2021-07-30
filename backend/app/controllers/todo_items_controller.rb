@@ -5,7 +5,7 @@ class TodoItemsController < ApplicationController
 
   # GET /todo_items
   def index
-    @todoitems = TodoItem.all
+    @todoitems = TodoItem.where("active=true")
     json_response(@todoitems)
   end
 
