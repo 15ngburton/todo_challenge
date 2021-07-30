@@ -1,7 +1,7 @@
 # todo_challenge
 
 To start the front end server, run:
-### yarn install
+### yarn start
 
 To start the backend server, first download PostgreSQL, and make sure the default user "postgres" uses the password "password". Then run:
 ### bundle install
