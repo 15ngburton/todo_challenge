@@ -11,22 +11,29 @@ const TodoItem = (props) => {
   }
 
   function change_completion() {
-    // Changes props to NOT(complete) and sends changes to db
+    // props.complete = !(props.complete)
   }
 
   function delete_item() {
     // Changes props to remove item, and sends changes to db
   }
 
+  function box_checked(complete) {
+    if(complete){
+      return checked_checkbox
+    }
+    return unchecked_checkbox
+  }
+
   return (
     <div>
       <img
         className="todo_icon"
-        src={checked_checkbox}
+        src={box_checked(props.complete)}
         alt="completion button"
         onClick={change_completion()} 
       />
-      <span>{props.description}</span>
+      <span className="description">{props.description}</span>
       <img
         className="todo_icon"
         src={edit_icon}
@@ -39,6 +46,7 @@ const TodoItem = (props) => {
         alt="delete button"
         onClick={delete_item()}
       />
+      <hr />
     </div>
   );
 };

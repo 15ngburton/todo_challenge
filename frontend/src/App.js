@@ -25,7 +25,11 @@ function TodoList() {
   return (
     <div>
       {data.map((todo_item) => (
-        <TodoItem description={todo_item.description} complete={todo_item.complete}/>
+        <TodoItem 
+          description={todo_item.description} 
+          complete={todo_item.complete}
+          id={todo_item.id}  
+        />
       ))}
     </div>
   );
