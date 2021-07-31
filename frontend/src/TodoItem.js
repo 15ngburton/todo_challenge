@@ -7,15 +7,36 @@ import trash_icon from "./trash_icon.png"
 
 const TodoItem = (props) => {
   function edit_description() {
-    // Changes state to allow edits to todo item
+    // const requestOptions = {
+    //   method: 'PUT',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ description: "Changed description" })
+    // };
+
+    // fetch('http://localhost:3000/todo_items/'.concat(String(props.id)), requestOptions)
+    // console.log("Hello world!")
   }
 
   function change_completion() {
-    // props.complete = !(props.complete)
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ complete: !(props.complete) })
+    };
+
+    fetch('http://localhost:3000/todo_items/'.concat(String(props.id)), requestOptions)
+    console.log("Hello world!")
   }
 
   function delete_item() {
-    // Changes props to remove item, and sends changes to db
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ active: false })
+    };
+
+    fetch('http://localhost:3000/todo_items/'.concat(String(props.id)), requestOptions)
+    console.log("Hello world2!")
   }
 
   function box_checked(complete) {
