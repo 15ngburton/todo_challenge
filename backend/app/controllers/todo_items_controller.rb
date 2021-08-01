@@ -32,6 +32,6 @@ class TodoItemsController < ApplicationController
 
   def todo_params
     # Whitelist params
-    params.permit(:id, :description, :completed)
+    params.permit(:id, :description, :complete, :active)
   end
 end
