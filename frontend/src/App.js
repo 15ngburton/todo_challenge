@@ -28,7 +28,8 @@ function TodoList() {
         <TodoItem 
           description={todo_item.description} 
           complete={todo_item.complete}
-          id={todo_item.id}  
+          id={todo_item.id}
+          active={todo_item.active}  
         />
       ))}
     </div>
