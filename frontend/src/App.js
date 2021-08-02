@@ -5,12 +5,32 @@ import TodoItem from "./TodoItem";
 
 const queryClient = new QueryClient();
 
-export default function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TodoList />
-    </QueryClientProvider>
-  );
+class App extends React.Component{
+  constructor() {
+    super();
+    this.state = {filter: "all"};
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>Todo List</h1>
+        <form>
+          <label for="filter">Filter results:</label>
+          <select name="filter" id="filter">
+            <option value="all">All</option>
+            <option value="pending">Pending Only</option>
+            <option value="completed">Completed Only</option>
+          </select>
+      </form>
+      <br />
+      <hr/>
+        <QueryClientProvider client={queryClient}>
+          <TodoList />
+        </QueryClientProvider>
+      </div>
+    );
+  }
 }
 
 function TodoList() {
@@ -35,3 +55,5 @@ function TodoList() {
     </div>
   );
 }
+
+export default App;
