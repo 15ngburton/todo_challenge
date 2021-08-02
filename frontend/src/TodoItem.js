@@ -2,9 +2,10 @@ import React from "react";
 import './todo.css';
 import checked_checkbox from "./checkbox_checked.png"
 import unchecked_checkbox from "./checkbox_unchecked.png"
-import edit_icon from "./edit_icon.png"
 import trash_icon from "./trash_icon.png"
 import axios from "axios"
+import { EditText } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
 
 class TodoItem extends React.Component {
   constructor(props) {
@@ -18,10 +19,12 @@ class TodoItem extends React.Component {
   }
 
   render() {
-    function _edit_description() {
-      // TODO: CREATE FORM
-      // TODO: PUT REQUEST
-      // TODO: CHANGE REACT DESCRIPTION 
+    function _edit_description({value}) {
+      axios.put(
+        'http://localhost:3000/todo_items/'.concat(String(this.state.id)),
+        { description:  value }
+      )
+      this.setState({description: value})
     }
     
     function _change_completion() {
@@ -64,12 +67,9 @@ class TodoItem extends React.Component {
           alt="completion button"
           onClick={change_completion} 
         />
-        <span className="description">{this.state.description}</span>
-        <img
-          className="todo_icon"
-          src={edit_icon}
-          alt="edit button" 
-          onClick={edit_description}
+        <EditText 
+          defaultValue={this.state.description}
+          onSave={edit_description}
         />
         <img
           className="todo_icon"
