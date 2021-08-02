@@ -27,12 +27,16 @@ class TodoItem extends React.Component {
     function _change_completion() {
       axios.put(
         'http://localhost:3000/todo_items/'.concat(String(this.state.id)),
-        { complete: !(this.state.complete) })
+        { complete: !(this.state.complete) }
+      )
       this.setState({complete: !(this.state.complete)})
     }
     
     function _delete_item() {
-      axios.put('http://localhost:3000/todo_items/'.concat(String(this.state.id)), { active: false })
+      axios.put(
+        'http://localhost:3000/todo_items/'.concat(String(this.state.id)),
+        { active: false }
+      )
       this.setState({active: false})
     }
     
@@ -47,6 +51,10 @@ class TodoItem extends React.Component {
     const change_completion = _change_completion.bind(this);
     const delete_item = _delete_item.bind(this);
     const box_checked = _box_checked.bind(this);
+
+    if(this.state.active === false){
+      return null;
+    }
 
     return(
       <div>
